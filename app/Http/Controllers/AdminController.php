@@ -9,6 +9,8 @@ use App\Category;
 use App\Tag;
 use App\User;
 use Alert;
+use DB;
+use yajra\Datatables\Datatables;
 
 class AdminController extends Controller
 {
@@ -28,8 +30,22 @@ class AdminController extends Controller
         $users = User::get();
         $articles = Article::latest()->get();
         $tags = Tag::all();
+
         
         return view('admin.postingan.artikel',compact('articles', 'users', 'tags'));
+    }
+
+    public function serverside()
+    {
+        // $users = User::select('users.*');
+        // $articles = DB::table('articles')
+        //     ->join('users','articles.id', '=', 'users.id')
+        //     ->select('users.name','articles.*');
+        // $tags = Tag::select('tags.*');
+        $articles = Article::select('articles.*');
+
+
+        return \DataTables::eloquent($articles)->toJson();
     }
 
     /**

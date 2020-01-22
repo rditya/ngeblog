@@ -31,8 +31,11 @@
     <!-- Sweet Alert  -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 
+    <!-- Stisla Template -->
     <link rel="stylesheet" href="{{asset('assets/modules/select2/dist/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
+
+
 
 
 
@@ -459,8 +462,26 @@
         <!-- Page level custom scripts -->
         <script>
             $(document).ready(function() {
-            $('#dataTable').DataTable();
-            });
+                var t = $('#dataTable').DataTable({
+                    processing: true,
+                    serverside: true,
+                    ajax: {
+                        url: "{{route('serverside')}}",
+                        data: { _token: "{{csrf_token()}}"}
+                    },
+                    columns: [
+                        // {data: 'no', name: 'no'},
+                        {data: 'title', name: 'title'},
+                        {data: 'article', name: 'article'},
+                        {data: 'created_at', name: 'publish'},
+                        {data: 'updated_at', name: 'update'},
+                        // {data: 'tag', name: 'tag'},
+                        {data: 'user_id ', name: 'penulis'},
+                        {data: 'status', name: 'status'},
+                        // {data: 'action', name: 'action'},
+                    ]
+                });
+            } );
         </script>
         
 

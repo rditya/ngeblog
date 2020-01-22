@@ -24,6 +24,8 @@ Route::group(['prefix' => '', 'middleware' => ['auth','checkrole']], function ()
     Route::get('/dashboard/artikel/create', 'AdminController@create')->name('tambah-artikel');
     Route::post('/dashboard/artikel','AdminController@store')->name('simpan-artikel');
     Route::delete('dashboard/artikel/{article}/delete','AdminController@destroy')->name('delete-artikel');
+
+    Route::get('serverside', 'AdminController@serverside')->name('serverside');
 });
 Route::get('/error', 'ErrorController@error')->name('error');
 Route::get('/', 'ErrorController@goback')->name('back');

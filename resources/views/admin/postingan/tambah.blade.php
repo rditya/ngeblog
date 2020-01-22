@@ -42,22 +42,32 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="">Status</label>
-                    <label for="" class="radio-inline"><input type="radio" name="status" value="publish" id=""> Publish</label>
-                    <label for="" class="radio-inline"><input type="radio" name="status" value="draft" id=""> Draft</label>
-                </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary" value="send">
+                            <Button type="Submit" Class="btn btn-primary btn-icon-split btn-sm">
+                                <span class="icon text-white-50">
+                                    <i class="far fa-paper-plane"></i>
+                                </span>
+                                <span class="text">Send</span>
+                            </Button>
                         </div>
                     </div>
-                    <div class="col-md-8 text-right">
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary" value="Publish">
-                            <input type="submit" class="btn btn-danger" value="Draft">
-                        </div>
+                    <div class="col-md-3  offset-md-7">
+                    <div class="form-group">
+                    <label class="form-label">Status</label>
+                      <div class="selectgroup w-100">
+                        <label class="selectgroup-item">
+                          <input type="radio" name="status" value="publish" class="selectgroup-input" checked="">
+                          <span class="selectgroup-button">Publish</span>
+                        </label>
+                        <label class="selectgroup-item">
+                          <input type="radio" name="status" value="draft" class="selectgroup-input" checked="">
+                          <span class="selectgroup-button">Draft</span>
+                        </label>
+
+                      </div>
+                    </div>
                     </div>
                 </div>
             </form>
