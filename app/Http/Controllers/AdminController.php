@@ -35,19 +35,6 @@ class AdminController extends Controller
         return view('admin.postingan.artikel',compact('articles', 'users', 'tags'));
     }
 
-    public function serverside()
-    {
-        // $users = User::select('users.*');
-        // $articles = DB::table('articles')
-        //     ->join('users','articles.id', '=', 'users.id')
-        //     ->select('users.name','articles.*');
-        // $tags = Tag::select('tags.*');
-        $articles = Article::select('articles.*');
-
-
-        return \DataTables::eloquent($articles)->toJson();
-    }
-
     /**
      * Show the form for creating a new resource.
      *

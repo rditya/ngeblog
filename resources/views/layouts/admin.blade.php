@@ -462,26 +462,8 @@
         <!-- Page level custom scripts -->
         <script>
             $(document).ready(function() {
-                var t = $('#dataTable').DataTable({
-                    processing: true,
-                    serverside: true,
-                    ajax: {
-                        url: "{{route('serverside')}}",
-                        data: { _token: "{{csrf_token()}}"}
-                    },
-                    columns: [
-                        // {data: 'no', name: 'no'},
-                        {data: 'title', name: 'title'},
-                        {data: 'article', name: 'article'},
-                        {data: 'created_at', name: 'publish'},
-                        {data: 'updated_at', name: 'update'},
-                        // {data: 'tag', name: 'tag'},
-                        {data: 'user_id ', name: 'penulis'},
-                        {data: 'status', name: 'status'},
-                        // {data: 'action', name: 'action'},
-                    ]
-                });
-            } );
+                $('#dataTable').DataTable();
+            });
         </script>
         
 

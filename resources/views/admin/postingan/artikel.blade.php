@@ -32,22 +32,31 @@
                 <table class="table table-bordered table-striped display" id="dataTable" width="100%" cellspacing="5">
                     <thead>
                         <tr>
+                            <th>No </th>
                             <th>Title</th>
                             <th>Article</th>
                             <th>Publish</th>
                             <th>Update</th>
+                            <th>Tag</th>
                             <th>Penulis</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @php ($a = 1)
                         @foreach ($articles as $article)
                         <tr>
+                            <td>{{$a++}}</td>
                             <td>{{$article->title}}</td>
                             <td>{!! Str::limit($article->article, 20) !!}</td>
                             <td>{{$article->created_at->diffForHumans()}}</td>
                             <td>{{$article->updated_at->format('Y-m-d')}}</td>
-
+                            <td>
+                                @foreach ($article->tag as $tags)
+                                    <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-tag"></i> {{$tags->name}}</a>
+                                @endforeach
+                            </td>
                             <td>{{ucwords($article->user['name'])}}</td>
                             @if ($article->status == 'publish')
                             <td class="text-success" >{{ucfirst($article->status)}}</td>
@@ -55,7 +64,18 @@
                             @if ($article->status == 'draft')
                             <td class="text-danger">{{ucfirst($article->status)}}</td>
                             @endif
+                            @if (Auth::user()->id == $article->user_id)
+                            <td>
+                                <button class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i> Edit</button>
+                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ConfirmDelete"><i class="fas fa-trash-alt"></i> Delete</button>
+                                <a href="#" class="btn btn-primary btn-sm"><i class="far fa-eye"></i></a>
+                            </td>
+                            @else
+                            <td>
+                                You can't access action for this field row
+                            </td>
 
+                            @endif
 
                         </tr>
                         @endforeach
