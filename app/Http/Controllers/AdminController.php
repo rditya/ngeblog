@@ -43,7 +43,7 @@ class AdminController extends Controller
         return \DataTables::eloquent($articles)
         ->addIndexColumn()
         ->addColumn('title', function ($articles){
-            return "<a href='#'>$articles->title</a>";
+            return "<a href='#' class='text-primary'>$articles->title</a>";
         })
         ->addColumn('article', function ($articles){
             return $articles->article;
@@ -59,13 +59,24 @@ class AdminController extends Controller
         })
         ->addColumn('status', function ($articles){
             if ($articles->status == 'publish') {
-                return "<span class='text-success'>$articles->status</span>";
+                return "<span class='badge badge-pill badge-success'>$articles->status</span>";
             }
             elseif ($articles->status == 'draft') {
-                return "<span class='text-danger'>$articles->status</span>";
+                return "<span class='badge badge-pill badge-danger'>$articles->status</span>";
             }
         })
-        ->rawColumns(['no','title','article','created_at','updated_at','user_id', 'status'])
+        ->addColumn('action', function ($articles){
+            if (auth()->user()->id == $articles->user_id) {
+                return "
+                <button class='btn btn-warning btn-sm'><i class='fas fa-pencil-alt'></i> Edit</button>
+                <button class='btn btn-danger btn-sm' data-toggle='modal' data-target='#ConfirmDelete'><i class='fas fa-trash-alt'></i> Delete</button>";
+            }
+            else {
+                return "<span class='text-danger'>Action Kosong</span>";
+            }
+        })
+        // ->addColumn('action', "<button class='btn btn-danger'>Delete</button>")
+        ->rawColumns(['no','title','article','created_at','updated_at','user_id', 'status', 'action'])
         ->toJson();
     }
 

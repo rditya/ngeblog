@@ -53,17 +53,16 @@
                             </Button>
                         </div>
                     </div>
-                    <div class="col-md-3  offset-md-7">
+                    <div class="col-md-3 offset-md-7">
                     <div class="form-group">
-                    <label class="form-label">Status</label>
                       <div class="selectgroup w-100">
-                        <label class="selectgroup-item">
-                          <input type="radio" name="status" value="publish" class="selectgroup-input" checked="">
-                          <span class="selectgroup-button">Publish</span>
-                        </label>
                         <label class="selectgroup-item">
                           <input type="radio" name="status" value="draft" class="selectgroup-input" checked="">
                           <span class="selectgroup-button">Draft</span>
+                        </label>
+                        <label class="selectgroup-item">
+                          <input type="radio" name="status" value="publish" class="selectgroup-input" checked="">
+                          <span class="selectgroup-button">Publish</span>
                         </label>
 
                       </div>

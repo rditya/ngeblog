@@ -472,13 +472,13 @@
                     columns: [
                         {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable:false},
                         {data: 'title', name: 'title'},
-                        {data: 'article', name: 'article'},
-                        {data: 'created_at', name: 'publish'},
-                        {data: 'updated_at', name: 'update'},
+                        {data: 'article', name: 'article', orderable: false, searchable:false},
+                        {data: 'created_at', name: 'publish', orderable: false, searchable:false},
+                        {data: 'updated_at', name: 'update', orderable: false, searchable:false},
                         // {data: 'tag.name', name: 'tag.name'},
                         {data: 'user.name', name: 'user.name'},
-                        {data: 'status', name: 'status'},
-                        {data: 'action', name: 'action'},
+                        {data: 'status', name: 'status', orderable: false, searchable:false},
+                        {data: 'action', name: 'action', orderable: false, searchable:false},
                         
                         // {"render": function(data, type, row, meta){
                         //     return '<a href="#">'+data(row[1])+'</a>';
