@@ -35,6 +35,40 @@ class AdminController extends Controller
         return view('admin.postingan.artikel',compact('articles', 'users', 'tags'));
     }
 
+    public function serverside()
+    {
+        $articles = Article::with('user','tag');
+
+
+        return \DataTables::eloquent($articles)
+        ->addIndexColumn()
+        ->addColumn('title', function ($articles){
+            return "<a href='#'>$articles->title</a>";
+        })
+        ->addColumn('article', function ($articles){
+            return $articles->article;
+        })
+        ->addColumn('created_at', function ($articles){
+            return $articles->created_at->diffForHumans();
+        })
+        ->addColumn('updated_at', function ($articles){
+            return $articles->updated_at->format('Y-m-d');
+        })
+        ->addColumn('user.name', function ($articles){
+            return ucwords($articles->user['name']);
+        })
+        ->addColumn('status', function ($articles){
+            if ($articles->status == 'publish') {
+                return "<span class='text-success'>$articles->status</span>";
+            }
+            elseif ($articles->status == 'draft') {
+                return "<span class='text-danger'>$articles->status</span>";
+            }
+        })
+        ->rawColumns(['no','title','article','created_at','updated_at','user_id', 'status'])
+        ->toJson();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

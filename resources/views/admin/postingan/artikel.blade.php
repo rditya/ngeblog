@@ -32,12 +32,11 @@
                 <table class="table table-bordered table-striped display" id="dataTable" width="100%" cellspacing="5">
                     <thead>
                         <tr>
-                            <th>No </th>
+                            <th>No</th>
                             <th>Title</th>
                             <th>Article</th>
                             <th>Publish</th>
                             <th>Update</th>
-                            <th>Tag</th>
                             <th>Penulis</th>
                             <th>Status</th>
                             <th>Action</th>

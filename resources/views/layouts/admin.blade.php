@@ -462,8 +462,31 @@
         <!-- Page level custom scripts -->
         <script>
             $(document).ready(function() {
-                $('#dataTable').DataTable();
-            });
+                var t = $('#dataTable').DataTable({
+                    processing: true,
+                    serverside: true,
+                    ajax: {
+                        url: "{{route('serverside')}}",
+                        data: { _token: "{{csrf_token()}}"}
+                    },
+                    columns: [
+                        {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable:false},
+                        {data: 'title', name: 'title'},
+                        {data: 'article', name: 'article'},
+                        {data: 'created_at', name: 'publish'},
+                        {data: 'updated_at', name: 'update'},
+                        // {data: 'tag.name', name: 'tag.name'},
+                        {data: 'user.name', name: 'user.name'},
+                        {data: 'status', name: 'status'},
+                        {data: 'action', name: 'action'},
+                        
+                        // {"render": function(data, type, row, meta){
+                        //     return '<a href="#">'+data(row[1])+'</a>';
+                        // }}
+                    ],
+                    
+                });
+            } );
         </script>
         
 
